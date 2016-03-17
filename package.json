@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rixley/Warshcloth/issues"
   },
-  "homepage": "https://github.com/rixley/Warshcloth#readme"
+  "homepage": "https://github.com/rixley/Warshcloth#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
