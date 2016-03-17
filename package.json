@@ -18,5 +18,8 @@
   "homepage": "https://github.com/rixley/Warshcloth#readme",
   "dependencies": {
     "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^4.2.3"
   }
 }
