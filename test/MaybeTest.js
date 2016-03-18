@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 let assert = require('assert');
-let {Maybe} = require('../../../lib/monad/Maybe.js');
+let Maybe = require('../lib/monad/Maybe.js').Maybe;
 
 describe('Maybe monad', () => {
     it('should construct Justs and Nothings', () => {
