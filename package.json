@@ -4,7 +4,7 @@
   "description": "weekly chore manager",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --use_strict"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "eslint-plugin-react": "^4.2.3",
+    "mocha": "^2.4.5",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   }
