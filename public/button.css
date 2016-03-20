@@ -1,0 +1,9 @@
+.list span:before {
+    content: "\e236";
+    font-family: 'Glyphicons Halflings';
+    font-size: 12px;
+    position: relative;
+    margin-right: 10px;
+    top: 1px;
+    color: #ccc;
+}
