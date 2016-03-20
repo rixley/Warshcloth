@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/rixley/Warshcloth#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "nedb": "^1.8.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.5.0",
@@ -30,6 +32,7 @@
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.3",
     "react-dom": "^0.14.7",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "uuid": "^2.0.1"
   }
 }

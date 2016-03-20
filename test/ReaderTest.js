@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 let assert = require('assert');
-let Reader = require('../../../lib/monad/Reader');
+let Reader = require('../lib/monad/Reader');
 
 describe('Reader monad', () => {
     it('should implement map', () => {
