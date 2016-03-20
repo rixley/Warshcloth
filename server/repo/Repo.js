@@ -12,6 +12,10 @@ class Repo {
         throw new Error('Not implemented');
     }
 
+    update() {
+        throw new Error('Not implemented');
+    }
+
     query() {
         throw new Error('Not implemented');
     }

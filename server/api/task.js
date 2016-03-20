@@ -2,6 +2,16 @@
 let express = require('express');
 let TaskService = require('../service/TaskService');
 let Task = require('../model/Task');
+let _ = require('lodash');
+
+/**
+ * Generic error handler
+ * @param {Response} res
+ * @param {Error} err
+ */
+function onError(res, err) {
+    return res.status(500).send(err.message);
+}
 
 /******************************
  * Handlers
@@ -20,7 +30,8 @@ function createTask(repo, req, res) {
             res.json({
                 id: task.id
             });
-        });
+        })
+        .catch(onError.bind(undefined, res));
 }
 
 /**
@@ -34,7 +45,8 @@ function getTasks(repo, req, res) {
     return TaskService.getTasks().run(repo)
         .then((tasks) => {
             res.json(tasks);
-        });
+        })
+        .catch(onError.bind(undefined, res));
 }
 
 /**
@@ -54,7 +66,8 @@ function getTask(repo, req, res) {
             } else {
                 res.sendStatus(404);
             }
-        });
+        })
+        .catch(onError.bind(undefined, res));
 }
 
 /**
@@ -75,7 +88,23 @@ function deleteTask(repo, req, res) {
             } else {
                 res.sendStatus(404);
             }
-        });
+        })
+        .catch(onError.bind(undefined, res));
+
+}
+
+/**
+ * Updates a task
+ * @param {Repo} repo
+ * @param {Request} req a request
+ * @param {Response} res the response
+ * @return {Promise}
+ */
+function updateTask(repo, req, res) {
+    let update = _.pick(req.body, ['desc']);
+    return TaskService.update(req.params.id, update).run(repo)
+        .then(() => res.json({}))
+        .catch(onError.bind(undefined, res));
 
 }
 
@@ -88,6 +117,7 @@ function taskRouter(repo) {
     router.get('/task', getTasks.bind(undefined, repo));
     router.get('/task/:id', getTask.bind(undefined, repo));
     router.delete('/task/:id', deleteTask.bind(undefined, repo));
+    router.put('/task/:id', updateTask.bind(undefined, repo));
     return router;
 }
 
@@ -96,5 +126,6 @@ module.exports = {
     createTask: createTask,
     getTasks: getTasks,
     getTask: getTask,
-    deleteTask: deleteTask
+    deleteTask: deleteTask,
+    updateTask: updateTask
 };
