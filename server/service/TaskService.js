@@ -41,5 +41,15 @@ class TaskService {
     static getTask(id) {
         return new Reader((repo) => repo.query(id));
     }
+
+    /**
+     * Updates a task
+     * @param {string} id the id of the task to update
+     * @param {Object} update an object of fields to update
+     * @return {Reader}
+     */
+    static update(id, update) {
+        return new Reader((repo) => repo.update(id, update));
+    }
 }
 module.exports = TaskService;

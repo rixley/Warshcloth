@@ -49,4 +49,19 @@ describe('TaskService', () => {
         TaskService.delete(taskId).run(repo);
         mock.verify();
     });
+
+    it('should update tasks', () => {
+        let id = 'taskId';
+        let desc = 'description';
+        let repo = new Repo();
+        let task = new Task(id, desc);
+        let update = { desc: 'updated' };
+        let mock = sinon.mock(repo)
+            .expects('update')
+            .once()
+            .withArgs(id, update)
+            .returns(Promise.resolve(task));
+        return TaskService.update(id, update).run(repo)
+            .then(() => mock.verify());
+    });
 });

@@ -79,5 +79,23 @@ class NeDBTaskRepo extends Repo {
             });
         });
     }
+
+    /**
+     * Updates a task
+     * @param {string} id
+     * @param {Object} update
+     * @return {Promise<Task>}
+     */
+    update(id, update) {
+        return new Promise((resolve, reject) => {
+            let options = {};
+
+            this.db.update({ _id: id }, update, options, (err, numAffected) => {
+                if (err) return reject(err);
+                if (numAffected !== 1) return reject(new Error(`Unexpected number of rows affected: ${numAffected}`));
+                resolve();
+            });
+        });
+    }
 }
 module.exports = NeDBTaskRepo;

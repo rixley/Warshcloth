@@ -1,6 +1,7 @@
 /* eslint-env mocha */
-let sinon = require('sinon');
 let assert = require('assert');
+let express = require('express');
+let sinon = require('sinon');
 let Maybe = require('../lib/monad/Maybe').Maybe;
 let TasksApi = require('../server/api/task');
 let Repo = require('../server/repo/Repo');
@@ -93,6 +94,30 @@ describe('Tasks api', () => {
                     assert(res.json.calledOnce);
                     mockQuery.verify();
                     mockDelete.verify();
+                });
+        });
+    });
+
+    describe('PUT', () => {
+        it('should update tasks by id', () => {
+            let repo = new Repo();
+            let newDesc = 'updated';
+            let taskId = 'taskId';
+            let mockRepo = sinon.mock(repo)
+                .expects('update')
+                .once()
+                .withArgs(taskId, { desc: newDesc })
+                .returns(Promise.resolve());
+            let req = { params: { id: taskId }, body: { desc: newDesc } };
+            let res = Object.create(express.response);
+            let mockRes = sinon.mock(res)
+                .expects('json')
+                .once()
+                .returns(Promise.resolve());
+            return TasksApi.updateTask(repo, req, res)
+                .then(() => {
+                    mockRes.verify();
+                    mockRepo.verify();
                 });
         });
     });
