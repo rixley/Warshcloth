@@ -1,6 +1,5 @@
 'use strict';
-let Repo = require('./Repo');
-let Datastore = require('nedb');
+let NeDBRepo = require('./NeDBRepo');
 let Task = require('../model/Task');
 let Maybe = require('../../lib/monad/Maybe').Maybe;
 
@@ -13,13 +12,7 @@ function docToTask(taskDoc) {
     return new Task(taskDoc._id, taskDoc.desc);
 }
 
-class NeDBTaskRepo extends Repo {
-    constructor(config) {
-        super();
-
-        this.db = new Datastore(config);
-    }
-
+class NeDBTaskRepo extends NeDBRepo {
     /**
      * Stores a task
      * @param {Task} task

@@ -113,11 +113,11 @@ function updateTask(repo, req, res) {
  *****************************/
 function taskRouter(repo) {
     let router = express.Router();
-    router.post('/task', createTask.bind(undefined, repo));
-    router.get('/task', getTasks.bind(undefined, repo));
-    router.get('/task/:id', getTask.bind(undefined, repo));
-    router.delete('/task/:id', deleteTask.bind(undefined, repo));
-    router.put('/task/:id', updateTask.bind(undefined, repo));
+    router.post('/api/task', createTask.bind(undefined, repo));
+    router.get('/api/task', getTasks.bind(undefined, repo));
+    router.get('/api/task/:id', getTask.bind(undefined, repo));
+    router.delete('/api/task/:id', deleteTask.bind(undefined, repo));
+    router.put('/api/task/:id', updateTask.bind(undefined, repo));
     return router;
 }
 
